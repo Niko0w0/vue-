@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+  // 请求一:
+  let isResult1 = false;
+  let isResult2 = false;
+  $.ajax({
+    url:'',
+    success: function (){
+      console.log('结果一');
+      isResult1 = true;
+      handleResult();
+    }
+  });
+  // 请求二:
+  $.ajax({
+    url:'',
+    success: function (){
+      console.log("结果二");
+      isResult2 = true;
+      handleResult()
+    }
+  })
+
+  function handleResult() {
+    if(isResult1 && isResult2){
+      // 
+    }
+  }
+
+  // wapped into
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve('aaa')
+  //   },1000)
+  // }).then(res => {
+  //   console.log(res, "第一层的10行处理代码");
+
+  //   // 对结果进行第一次处理
+  //   return new Promise((resolve, reject) => {
+  //     // resolve(res + "111");
+  //     reject('err');
+  //   })
+  // }).then(res => {
+  //   console.log(res, "第二层的10行处理代码");
+
+  //   return new Promise(resolve => {
+  //     resolve(res + "222");
+  //   })
+  // }).then(res => {
+  //   console.log(res, "第三层的10行处理代码")
+  // }).catch(err => {
+  //   console.log(err);
+  // })
+
+
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve('aaa')
+  //   },1000)
+  // }).then(res => {
+  //   console.log(res, "第一层的10行处理代码");
+
+  //   // 对结果进行第一次处理
+  //   // return Promise.reject("err message");
+  //   throw 'err message'
+  // }).then(res => {
+  //   console.log(res, "第二层的10行处理代码");
+
+  //   return Promise.resolve(res + "222");
+  // }).then(res => {
+  //   console.log(res, "第三层的10行处理代码")
+  // }).catch(err => {
+  //   console.log(err);
+  // })
+
+
+  // 省略掉Promise.resolve
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve('aaa')
+  //   },1000)
+  // }).then(res => {
+  //   console.log(res, "第一层的10行处理代码");
+
+  //   // 对结果进行第一次处理
+  //   return res + "111"
+  // }).then(res => {
+  //   console.log(res, "第二层的10行处理代码");
+
+  //   return res + "222"
+  // }).then(res => {
+  //   console.log(res, "第三层的10行处理代码")
+  // })
+</script>
+
+</body>
+</html>

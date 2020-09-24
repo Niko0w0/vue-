@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 选择一个 -->
+      <select name="abc" v-model="fruit">
+        <option value="apple">apple</option>
+        <option value="banana">banana</option>
+        <option value="grape">grape</option>
+      </select>
+      <h3>{{fruit}}</h3>
+
+      <!-- 选择多个 -->
+      <select name="a" v-model="fruits" multiple>
+        <option value="apple">apple</option>
+        <option value="banana">banana</option>
+        <option value="grape">grape</option>
+      </select>
+      <h3>{{fruits}}</h3>
+
+      <label :for="item" v-for="item in originFruits">
+        <input
+          type="checkbox"
+          :id="item"
+          :value="item"
+          v-model="hobbies"
+        />{{item}}
+      </label>
+      <h2>{{hobbies}}</h2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          fruit: "apple",
+          fruits: [],
+          originFruits: ["a", "b", "c", "d", "e"],
+          hobbies: [],
+        },
+      });
+    </script>
+  </body>
+</html>

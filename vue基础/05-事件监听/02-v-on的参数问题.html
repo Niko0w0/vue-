@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    <!-- 
+        在事件定义时，写函数时省略了小括号，但是方法本身是需要一个参数的
+        这个时候，vue会默认将浏览器生成的event事件对象作为参数传入
+    -->
+    <button @click="btn1Click()">按钮1</button>
+    <button @click='btn1Click'>按钮2</button>
+    <button @click='btn2Click'>按钮3</button>
+    <!-- 
+        在方法定义时,需要event对象,同时又需要其他参数
+        在调用方式,如何手动获取到浏览器参数的event对象 : $event
+        传入的不带引号的纯数字会自动解析成数字,但是传入的变量如果不加引号会在data中自动寻找
+        如果加上引号则为传入的字符串
+    -->
+    <button @click="btn3Click(123,$event)">按钮4</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods:{
+            btn1Click: function (){
+                console.log('btn1Click')
+            },
+            btn2Click(abc) {
+                console.log('------',abc);
+            },
+            btn3Click(abc,event) {
+                console.log(abc,event);
+            }
+        }
+    })
+</script>
+</body>
+</html>

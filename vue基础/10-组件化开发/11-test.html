@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div id="app">
+      <cpn :number1="num1" :number2="num2"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h2>{{number1}}</h2>
+        <!-- props内属性，需要通过父组件来修改，所以不能直接这么写 -->
+        <!-- <input type="text" v-model="number1"> -->
+        <input type="text" v-model="dnumber1">
+        <h2>{{number2}}</h2>
+        <!-- <input type="text" v-model="number2"> -->
+        <input type="text" v-model="dnumber2">
+      </div>
+    </template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1 : 1,
+      num2 : 0
+    },
+    components : {
+      cpn : {
+        template : '#cpn',
+        props : {
+          number1 : Number,
+          number2 : Number
+        }
+      },
+      date() {
+        return {
+          dnumber1 : this.num1,
+          dnumber2 : this.num2
+        }
+      }
+    }
+  })
+</script>
+  </body>
+</html>

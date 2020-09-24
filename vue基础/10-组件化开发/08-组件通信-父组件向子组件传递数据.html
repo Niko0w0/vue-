@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        {{cmovies}}
+        <br>
+        {{cmessage}}
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+      // 父传子:props
+      const cpnC = Vue.extend({
+        template: `#cpn`,
+        // props : ['cmovies','cmessage']
+        props: {
+          // 类型限制
+          // cmovies:Array,
+          // cmessage:String
+
+          // 提供一些默认值
+          cmessage: {
+            type: String,
+            default: "aaaaaaa", // 当没有传值时的默认值
+            required: true, // 在使用时，cmessage是必传值
+          },
+          // 类型是对象或者数组时，默认值必须是一个函数
+          cmovies: {
+            type: Array,
+            default() {
+              return [];
+            },
+          },
+        },
+      });
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          movies: ["1", "2", "3"],
+        },
+        components: {
+          cpn: cpnC,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 组件示例对象 -->
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        当前计数:
+        <button @click="decrement">-</button>
+        {{counter}}
+        <button @click="increment">+</button>
+      </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+      Vue.component("cpn", {
+        template: "#cpn",
+        // 闭包，变量私有化
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          decrement() {
+            this.counter--;
+          },
+          increment() {
+            this.counter++;
+          },
+        },
+      });
+
+      const app = new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>
